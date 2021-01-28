@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `commentaires` (
 
 DROP TABLE IF EXISTS `droits`;
 CREATE TABLE IF NOT EXISTS `droits` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(80) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1338 DEFAULT CHARSET=utf8;
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `droits` (
 -- Dumping data for table `droits`
 --
 
-INSERT INTO `droits` (`ID`, `nom`) VALUES
+INSERT INTO `droits` (`id`, `nom`) VALUES
 (1, 'utilisateur'),
 (42, 'modérateur'),
 (1337, 'administrateur');
