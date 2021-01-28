@@ -76,14 +76,14 @@ DROP TABLE IF EXISTS `droits`;
 CREATE TABLE IF NOT EXISTS `droits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(80) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1338 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `droits`
 --
 
-INSERT INTO `droits` (`ID`, `nom`) VALUES
+INSERT INTO `droits` (`id`, `nom`) VALUES
 (1, 'utilisateur'),
 (42, 'modérateur'),
 (1337, 'administrateur');
