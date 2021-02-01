@@ -19,30 +19,14 @@
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i></button>
             <section class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Articles</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ajouter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Inscription</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Connexion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Admins</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Articles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Ajouter</a></li>
+                    <li class="nav-item"><a class="nav-link" href="inscription.php">Inscription</a></li>
+                    <li class="nav-item"><a class="nav-link" href="connexion.php">Connexion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profil.php">Profil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin.php">Admins</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                 </ul>
             </section>
         </section>
