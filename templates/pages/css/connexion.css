@@ -1,0 +1,66 @@
+body{
+    height: 100%;
+    background-color: #e0e0e0;
+    background-image: url("../images/connexion-bg.svg");
+}
+
+.register-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-form{
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 70%;
+    border-radius: 37px;
+    background: #e0e0e0;
+    box-shadow:  9px -9px 26px #a6a6a6,
+    -9px 9px 26px #ffffff;
+}
+
+.register-form .form-control{
+    margin-left: 60%;
+    border-radius: 1rem;
+}
+
+.register-image{
+    text-align: center;
+}
+
+.register-image i{
+    border-radius: 6rem;
+    margin-top: -3%;
+    font-size: 50px;
+}
+
+.register-form form{
+    padding: 14%;
+}
+
+.register-form form .row{
+    margin-bottom: -7%;
+}
+
+.register-form h3{
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+}
+
+.register-form .btnConnect{
+    width: 60%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 75%;
+}
+
+.page-footer{
+    background-color: #fff;
+}

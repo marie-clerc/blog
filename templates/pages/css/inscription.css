@@ -3,14 +3,57 @@ body{
     background-image: url("../images/inscription-bg.svg");
 }
 
-.registration__content{
+.register-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #2f7fad;
-    width: 100vh;
-    height: 70vh;
-    margin-left: 0;
-    margin-top: 5%;
 }
 
+.register-form{
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width: 70%;
+}
+
+.register-form .form-control{
+    margin-left: 60%;
+    border-radius: 1rem;
+}
+
+.register-image{
+    text-align: center;
+}
+
+.register-image i{
+    border-radius: 6rem;
+    margin-top: -3%;
+    font-size: 50px;
+    color: lightblue;
+}
+
+.register-form form{
+    padding: 14%;
+}
+
+.register-form form .row{
+    margin-bottom: -7%;
+}
+
+.register-form h3{
+    margin-bottom: 8%;
+    margin-top: -10%;
+    text-align: center;
+    color: #0062cc;
+}
+
+.register-form .btnRegister{
+    width: 60%;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.5%;
+    background: #dc3545;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 75%;
+}
