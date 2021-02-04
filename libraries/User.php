@@ -128,6 +128,9 @@ class User extends Model
         }
     }
 
+    /**
+     * Permet à un utilisateur existant d'accéder à ses informations personnelle et de les modifiers
+     */
     public function update()
     {
         if (isset($_SESSION['id']))
