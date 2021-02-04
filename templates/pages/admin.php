@@ -37,7 +37,6 @@ $test = new Admin();
                         <form action="admin.php" method="post">
                             <label for="allArticles"></label>
                             <select>
-                                <option>-- Choisissez un article --</option>
                                 <?php
                                     $name = $test -> getAllArticles();
                                     foreach ($name as $value)
@@ -47,9 +46,24 @@ $test = new Admin();
 
                                 ?>
                             </select>
-
                             <label for="modifyArticles"></label>
                             <input type="submit" id="modifyArticles" name="modifyArticles" value="Modifier">
+                            <section>
+                                <?php
+                                if (isset($_POST['modifyArticles']))
+                                {
+                                    echo ('
+                                    <form action="admin.php" method="post">
+                                        <section><input type="text" id="newTitle" name="newTitle" placeholder="Nouveau Titre"></section>
+                                        <section><input type="text" id="newArticle" name="newArticle" placeholder="Nouvel Article"></section>
+                                        <section><input type="submit" id="validNewArticle" name="validNewArticle" value="Valider"></section>
+                                    </form>
+                                    ');
+
+                                    // appel de la méthod
+                                }
+                                ?>
+                            </section>
                         </form>
                     </section>
                     <section class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-categories-tab">
