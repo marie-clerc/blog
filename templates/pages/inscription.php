@@ -9,6 +9,8 @@ if (isset($_POST['register']))
 
 ?>
 
+<?php $btnLogout = NULL; ?>
+
 <?php $css = "css/inscription.css"; ?>
 
 <?php ob_start(); ?>

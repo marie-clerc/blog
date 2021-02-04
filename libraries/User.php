@@ -68,6 +68,9 @@ class User extends Model
         }
     }
 
+    /**
+     * Permet à un utilisateur existant de se connecter
+     */
     public function connect()
     {
         if (isset($_POST['connect']))
@@ -114,13 +117,71 @@ class User extends Model
                             $_SESSION['email'] = $infoUser['email'];
                             $_SESSION['id_droits'] = $infoUser['id_droits'];
                         }
-                        Http::redirect('../../templates/pages/profil.php');
+                        Http::redirect('../../templates/pages/index.php');
                     }
                     else
                     {
                         echo ("utilisateur introuvable.");
                     }
                 }
+            }
+        }
+    }
+
+    public function update()
+    {
+        if (isset($_SESSION['id']))
+        {
+            if (isset($_POST['update']))
+            {
+                if (empty($_POST['newLogin']) || empty($_POST['newPassword']) || empty($_POST['newConfirmPassword']) || empty($_POST['newEmail']))
+                {
+                    echo('Veuillez remplir le formulaire de modification de profil.');
+                }
+                else
+                {
+                    $newLogin = htmlspecialchars(trim($_POST['newLogin']));
+                    $unhashedPassword = htmlspecialchars(trim($_POST['newPassword']));
+                    $newConfirmPassword = htmlspecialchars(trim($_POST['newConfirmPassword']));
+                    $newEmail = htmlspecialchars(trim($_POST['newEmail']));
+
+                    $updateHashedPassword = password_hash($unhashedPassword, PASSWORD_BCRYPT);
+
+                    if ($unhashedPassword === $newConfirmPassword)
+                    {
+                        $loginExist = $this -> find($newLogin);
+
+                        if ($loginExist)
+                        {
+                            echo ("Erreur : Nom d'utilisateur déjà existant.");
+                        }
+                        else
+                        {
+                            $updateUser = $this -> pdo -> prepare("UPDATE utilisateurs SET login = :newLogin, password = :newPassword, email = :email WHERE id = :id");
+                            $updateUser -> execute([
+                                "newLogin" => $newLogin,
+                                "newPassword" => $updateHashedPassword,
+                                "email" => $newEmail,
+                                "id" => $_SESSION['id']
+                            ]);
+
+                            $_SESSION['login'] = $newLogin;
+                            $_SESSION['password'] = $updateHashedPassword;
+                            $_SESSION['email'] = $newEmail;
+
+                            session_destroy();
+                            Http::redirect('../../templates/pages/connexion.php');
+                        }
+                    }
+                    else
+                    {
+                        echo ("Erreur : Authentification des mot de passes incorrect.");
+                    }
+                }
+            }
+            else
+            {
+                echo ("Erreur : Login/mot de passe incorrect.");
             }
         }
     }

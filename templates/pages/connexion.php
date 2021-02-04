@@ -1,11 +1,23 @@
 <?php
 require_once('../../libraries/autoload.php');
 
-$connectUser = new User();
-$connectUser -> connect();
+if (isset($_POST['logout'])){
 
+    session_destroy();
+    Http::redirect('connexion.php');
+    exit();
+}
+
+if (isset($_POST['connect']))
+{
+    session_start();
+    $connectUser = new User();
+    $connectUser -> connect();
+}
 
 ?>
+
+<?php $btnLogout = NULL; ?>
 
 <?php $css = "css/connexion.css"; ?>
 
