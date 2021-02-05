@@ -18,7 +18,7 @@ class Articles extends Model{
 
         while ($count = $art->fetch(PDO::FETCH_ASSOC)){
 
-                $_GET['id'] = @$count['id'];
+                $_GET['id'] = @$count['id']; 
 
                 echo '<p><a href="article.php?id='.$_GET['id'].'">' . ucfirst($count['article']) . ' posté le ' . $count['date'] .  '</a></p>';
 

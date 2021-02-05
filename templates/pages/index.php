@@ -1,13 +1,21 @@
-<?php require_once ('../../libraries/autoload.php'); ?>
-
+<?php
+require_once('../../libraries/autoload.php');
+session_start();
+?>
 <?php require ('../../libraries/Articles.php') ?>
-
+<?php 
+if (isset($_POST['logout'])){
+    session_destroy();
+    Http::redirect('connexion.php');
+    exit(); }
+?>
+<?php $css = ""; ?>
+<?php if (isset($_SESSION['id'])){$btnLogout = '<form method="POST" action="index.php"><input type="submit" name="logout" value="Déconnexion" class="btn btn-danger"></form>';}else{$btnLogout = NULL;} ?>
 <?php $css = "css/index.css"; ?>
-
 <?php ob_start(); ?>
-
 <main>
     <article>
+        <!-- Code Guillaume -->
         <section class="container-fluid">
             <section class="main-cont">
                 <section class="item1">
@@ -53,5 +61,5 @@
 </main>
 
 <?php $content = ob_get_clean(); ?>
-
+<?php require("../layout.php");?>
 <?php require("../layout.php");?>
