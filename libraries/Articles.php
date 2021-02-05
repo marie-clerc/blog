@@ -52,7 +52,11 @@ class Articles extends Model{
     /**
      * CODE MARIE
      */
-
+    /**
+     * @param $id
+     * @return false|PDOStatement
+     * Montre l'article cliqué
+     */
     public function showarticle($id) {
         $id_article = $id; // on va utiliser le get de la fonction pages ou dernier
         $sql = 'SELECT titre, article, articles.date, utilisateurs.login
@@ -66,7 +70,11 @@ class Articles extends Model{
 
     }
 
-
+    /**
+     * @param $id
+     * @return false|PDOStatement
+     * montre les commentaires de l'article cliqué
+     */
     public function showcomments($id)
     {
         $id_article = $id;
@@ -82,19 +90,33 @@ class Articles extends Model{
 
     }
 
-    public function writecomments () {
+    /**
+     * permet de refresh la page lors qu'on poste un commentaire
+     */
+    public function refresh() {
+
+    }
+
+    /**
+     * @param $id
+     * permet d'inscrire un nouveau commentaire en bdd
+     */
+    public function writecomments ($id) {
         if (isset($_POST["submit"])) {
             if (empty($_POST['comment'])) {
+                $this->refresh();
                 echo 'ecrivez un commentaire';
             }
             else {
                 $comment = $_POST['comment'];
-                $id_article = $_SESSION['id_article'];
+                $id_article = $id;
                 $id_utilisateur = 1;
                 $sql = 'INSERT INTO `commentaires`(`commentaire`, `id_article`, `id_utilisateur`, `date`) 
                     VALUES commentaire = :commentaire, id_article = :article, id_utilisateur= :utilisateur, CURRENT_TIMESTAMP';
                 $stm = $this->pdo->prepare($sql);
-                $stm->execute(['commentaire'=> $comment, 'article'=> $id_article, 'utilisateur'=> $id_utilisateur]);
+                if ($stm->execute(['commentaire'=> $comment, 'article'=> $id_article, 'utilisateur'=> $id_utilisateur])) {
+                    $this->refresh();
+                }
             }
         }
     }

@@ -4,7 +4,6 @@ require '../../libraries/articles.php';
 session_start() ;
 // $article = $_SESSION['article'];
 $articles = new Articles();
-$articles->writecomments();
 ?>
 
 <?php $css = "css/inscription.css"; ?> <!--lien du css-->
@@ -23,7 +22,7 @@ $commentaire = $articles->showcomments($_GET['id']);
         echo $value['commentaire'] .'<br>' . $value['date'] .'<br>' . $value['login'] .'<br>';
         //var_dump($value);
     }
-
+$articles->writecomments($_GET['id']);
 ?>
 <form action="article.php" method="post">
     <label for="comment">Poster un commentaire</label><br>
