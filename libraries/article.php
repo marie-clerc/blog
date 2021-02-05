@@ -5,7 +5,7 @@ class article extends Model
 {
     /**
      * trouver les categories disponibles pour les proposer dans la création
-     * d'un article.
+     * d'un article. 
      * @return array
      */
     public function findcategories() {
