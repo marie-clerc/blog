@@ -34,24 +34,49 @@ $test -> modifyArticles();
                 </section>
                 <section class="tab-content" id="v-pills-tabContent">
                     <section class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-articles-tab">
-                        <form action="admin.php" method="post">
+                        <form action="" method="get">
                             <label for="allArticles"></label>
-                            <select>
+                            <select name="allArticles">
                                 <?php
                                     $name = $test -> showArticles();
+
+                                    $i = 0;
                                     foreach ($name as $value)
                                     {
-                                        echo ('<option>' . $value['titre'] . '</option>');
+                                        echo ('<option value="$value[1]">' . $value[1] . '</option>');
+                                        $i++;
                                     }
-
                                 ?>
                             </select>
+
+                            <?php
+
+                            /*
+                             * if isset de du name
+                             * alors on envoie le name dans une fonction sql qui va comparer le name[titre] -> recuperer l'id qui appartient au titre
+                             * recupere tout ou y'a l'id
+                             *
+                             * ensuite ça te permet de tout afficher pour pouvoir modifier avec les données sous les yeux
+                             *
+                             * t'aura alors un bouton envoyer les modification avec un name'SubmitUpdate'
+                             * donner les POST de ton formulaire de modification et if isset de submitupdate tu va mettre tes valeurs post dans une fonction update que tu appel
+                             *
+                             *  envoyer alors on prend les valeur en get que l'on met dans une fonction sql qui va
+                             *
+                             * */
+
+
+
+
+                            ?>
                             <label for="modifyArticles"></label>
                             <input type="submit" id="modifyArticles" name="modifyArticles" value="Selectionner">
                             <section>
                                 <?php
                                 if (isset($_POST['modifyArticles']))
                                 {
+                                    // $result = function ($_GET['allArticles]
+                                    // id = result[1]
                                     echo ('
                                     <form action="admin.php" method="post">
                                         <section><input type="text" id="newTitle" name="newTitle" placeholder="Nouveau Titre"></section>
@@ -64,15 +89,9 @@ $test -> modifyArticles();
                             </section>
                         </form>
                     </section>
-                    <section class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-categories-tab">
-
-                    </section>
-                    <section class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-users-tab">
-
-                    </section>
-                    <section class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-access&roles-tab">
-
-                    </section>
+                    <section class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-categories-tab"></section>
+                    <section class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-users-tab"></section>
+                    <section class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-access&roles-tab"></section>
                 </section>
             </section>
         </section>

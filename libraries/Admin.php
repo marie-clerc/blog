@@ -10,11 +10,19 @@ class Admin extends Model
      */
     public function showArticles()
     {
-        $query = $this -> pdo -> prepare("SELECT titre FROM articles");
+        $query = $this -> pdo -> prepare("SELECT * FROM articles");
         $query -> execute();
 
-        $result = $query -> fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+        $i = 0;
+
+        while ($result = $query -> fetch(PDO::FETCH_ASSOC))
+        {
+            $tab[$i][] = $result['id'];
+            $tab[$i][] = $result['titre'];
+            $i++;
+            // var_dump($tab);
+        }
+        return $tab;
     }
 
     public function modifyArticles()
@@ -30,22 +38,14 @@ class Admin extends Model
                 $newTitle = htmlspecialchars(trim($_POST['newTitle']));
                 $newArticle = htmlspecialchars(trim($_POST['newArticle']));
 
-                $query = $this -> pdo -> prepare("SELECT id FROM articles");
-                $query -> execute();
-
-                $result = $query -> fetchAll(PDO::FETCH_ASSOC);
-
-                if ($query -> rowCount())
-                {
-                    $_SESSION['id_article'] = $result['id'];
-                }
-
                 $stmt = $this -> pdo -> prepare("UPDATE articles SET titre = :titre, article = :article WHERE id = :id");
                 $stmt -> execute([
                     "titre" => $newTitle,
                     "article" => $newArticle,
                     "id" => $_SESSION['id_article']
                 ]);
+
+                echo ('Modification de l\'article réussi');
             }
         }
     }
