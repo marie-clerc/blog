@@ -45,20 +45,50 @@ class Articles extends Model{
 
     public function pagesArticles(){
 
-        $sql = "SELECT * FROM `articles` WHERE `date` ORDER BY date DESC";
+        $sql ="SELECT COUNT(id) as nbArt FROM articles";
 
         $query = $this->pdo-> prepare($sql);
         $query->execute();
 
-        $article = $query->fetch(PDO::FETCH_ASSOC);
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $nbArt = $data['nbArt'];
+        $perPage = 2;
+        $cPage =1;
+        $nbPage = ceil($nbArt/$perPage);
 
-        while($article){
+        if(isset($_GET['p']) && $_GET['p']>0 && $_GET['p']<= $nbPage){
+
+            $cPage = $_GET['p'];
+        }
+        else{
+            $cPage =1;
+        }
+
+        $sql = "SELECT * FROM `articles` WHERE `date` ORDER BY date DESC LIMIT ".(($cPage-1)*$perPage).",$perPage";
+
+        $query = $this->pdo-> prepare($sql);
+        $query->execute();
+
+        $article = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($article as $articles){
 
             $_GET['id'] = @$articles['id'];
 
             echo '<h2>' .$articles['titre']. '</h2><p>' . $articles['article'] . '</p><a href="article.php?id='.$_GET['id'].'"> Lire l\'article en entier !</a><p> Posté le : ' .$articles['date'] .'</p><hr>';
+        }
+
+        for($i=1; $i<=$nbPage; $i++){
+            if($i==$cPage){
+                echo " $i  / ";
+            }
+            else{
+                echo " <a href=\"articles.php?p=$i\"> $i  </a>/ ";
+            }
+
 
         }
+
     }
 }
 
