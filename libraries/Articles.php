@@ -26,7 +26,7 @@ class Articles extends Model{
         return $count;
     }
 
-    public function pages(){
+    /*public function pagesArticles(){
 
         $sql = "SELECT * FROM `articles` WHERE `date` ORDER BY date DESC";
 
@@ -41,10 +41,25 @@ class Articles extends Model{
 
             echo '<h2>' .$articles['titre']. '</h2><p>' . $articles['article'] . '</p><a href="article.php?id='.$_GET['id'].'"> Lire l\'article en entier !</a><p> Posté le : ' .$articles['date'] .'</p><hr>';
         }
+    }*/
 
+    public function pagesArticles(){
+
+        $sql = "SELECT * FROM `articles` WHERE `date` ORDER BY date DESC";
+
+        $query = $this->pdo-> prepare($sql);
+        $query->execute();
+
+        $article = $query->fetch(PDO::FETCH_ASSOC);
+
+        while($article){
+
+            $_GET['id'] = @$articles['id'];
+
+            echo '<h2>' .$articles['titre']. '</h2><p>' . $articles['article'] . '</p><a href="article.php?id='.$_GET['id'].'"> Lire l\'article en entier !</a><p> Posté le : ' .$articles['date'] .'</p><hr>';
+
+        }
     }
-
-
 }
 
 ?>

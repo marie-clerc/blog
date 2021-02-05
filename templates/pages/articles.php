@@ -1,10 +1,14 @@
-<?php require_once ('../../libraries/autoload.php'); ?>
+<?php
 
-<?php require ('../../libraries/Articles.php') ?>
+require_once ('../../libraries/autoload.php');
 
-<?php $css = "css/articles.css"; ?>
+require ('../../libraries/Articles.php');
 
-<?php ob_start(); ?>
+$css = "css/articles.css";
+
+ob_start();
+
+?>
 
 
 <main>
@@ -20,7 +24,7 @@
                 <section class="article1">
                     <?php
                     $affichageA = new Articles();
-                    $affichageA ->pages();
+                    $affichageA ->pagesArticles();
                     ?>
                 </section>
             </section>
