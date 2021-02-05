@@ -1,9 +1,10 @@
 <?php
 require_once('../../libraries/autoload.php'); //charge TOUTES les class
-require '../../libraries/article.php';
-// session_start();
+require '../../libraries/articles.php';
+session_start() ;
 // $article = $_SESSION['article'];
-$article = new article();
+$articles = new Articles();
+$articles->writecomments();
 ?>
 
 <?php $css = "css/inscription.css"; ?> <!--lien du css-->
@@ -11,21 +12,21 @@ $article = new article();
 <?php ob_start();?>
 
 <?php
-$mainarticle = $article->showarticle();
+$mainarticle = $articles->showarticle($_GET['id']);
     foreach ($mainarticle as $value ) {
         echo $value['titre'] .'<br>' . $value['date'] .'<br>' . $value['login'] .'<br>' . $value['article'] .'<br>';
-        var_dump($value);
+        //var_dump($_GET);
     }
 
-$commentaire = $article->showcomments();
+$commentaire = $articles->showcomments($_GET['id']);
     foreach ($commentaire as $value ) {
         echo $value['commentaire'] .'<br>' . $value['date'] .'<br>' . $value['login'] .'<br>';
         //var_dump($value);
     }
-?>
-<form action="creer-article.php" method="post">
 
-    <label for="comment">Commentaire</label><br>
+?>
+<form action="article.php" method="post">
+    <label for="comment">Poster un commentaire</label><br>
     <textarea name="comment"></textarea><br>
     <input type="submit" name="submit" value="Envoyer">
 </form>

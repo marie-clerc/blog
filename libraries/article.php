@@ -57,36 +57,4 @@ class article extends Model
     }
 
 
-    public function showarticle() {
-
-
-    }
-
-    public function showcomments()
-    {
-        $id_article = 2;
-        $sql = 'SELECT commentaire, commentaires.date, utilisateurs.login
-                FROM articles
-                INNER JOIN commentaires ON commentaires.id_article = articles.id
-                INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur
-                WHERE articles.id = :idarticle';
-        $stm = $this->pdo->prepare($sql);
-        $stm->execute(['idarticle'=>$id_article]);
-
-        return ($stm);
-
-    }
-    public function writecomments () {
-        if (isset($_POST["submit"])) {
-            if (empty($_POST['comment'])) {
-                echo 'ecrivez un commentaire';
-            }
-            else {
-                $comment = $_POST['comment'];
-                $sql = ''
-
-            }
-        }
-
-    }
 }

@@ -11,7 +11,6 @@
     <!-- ICO -->
     <link rel="icon" href="">
 </head>
-
 <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <section class="container-fluid">
@@ -20,10 +19,10 @@
             <section class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Articles</a>
+                        <a class="nav-link" href="articles.php">Articles</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Ajouter</a>

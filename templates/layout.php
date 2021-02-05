@@ -3,13 +3,13 @@
 <!DOCTYPE HTML>
 <html lang="fr">
 
-<?php require_once('header.php'); ?>
+<?php require_once ('header.php'); ?>
 
 <body>
 
 <?= $content ?>
 
-<?php require_once('footer.php'); ?>
+<?php require_once ('footer.php'); ?>
 
 </body>
 </html>

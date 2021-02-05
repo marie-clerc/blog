@@ -14,4 +14,3 @@ abstract class Model
         $this -> pdo = Database::getPdo();
     }
 }
-?>
