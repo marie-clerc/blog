@@ -8,7 +8,7 @@ class Admin extends Model
      *
      * @return array
      */
-    public function getAllArticles()
+    public function showArticles()
     {
         $query = $this -> pdo -> prepare("SELECT titre FROM articles");
         $query -> execute();
@@ -30,7 +30,22 @@ class Admin extends Model
                 $newTitle = htmlspecialchars(trim($_POST['newTitle']));
                 $newArticle = htmlspecialchars(trim($_POST['newArticle']));
 
-                $query = $this -> pdo -> prepare(""); /* Mettre la requête de mise a jour de l'article selectionné */
+                $query = $this -> pdo -> prepare("SELECT id FROM articles");
+                $query -> execute();
+
+                $result = $query -> fetchAll(PDO::FETCH_ASSOC);
+
+                if ($query -> rowCount())
+                {
+                    $_SESSION['id_article'] = $result['id'];
+                }
+
+                $stmt = $this -> pdo -> prepare("UPDATE articles SET titre = :titre, article = :article WHERE id = :id");
+                $stmt -> execute([
+                    "titre" => $newTitle,
+                    "article" => $newArticle,
+                    "id" => $_SESSION['id_article']
+                ]);
             }
         }
     }

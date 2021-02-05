@@ -12,7 +12,7 @@ if (isset($_POST['logout'])){
 }
 
 $test = new Admin();
-
+$test -> modifyArticles();
 
 ?>
 
@@ -38,7 +38,7 @@ $test = new Admin();
                             <label for="allArticles"></label>
                             <select>
                                 <?php
-                                    $name = $test -> getAllArticles();
+                                    $name = $test -> showArticles();
                                     foreach ($name as $value)
                                     {
                                         echo ('<option>' . $value['titre'] . '</option>');
@@ -47,7 +47,7 @@ $test = new Admin();
                                 ?>
                             </select>
                             <label for="modifyArticles"></label>
-                            <input type="submit" id="modifyArticles" name="modifyArticles" value="Modifier">
+                            <input type="submit" id="modifyArticles" name="modifyArticles" value="Selectionner">
                             <section>
                                 <?php
                                 if (isset($_POST['modifyArticles']))
@@ -56,11 +56,9 @@ $test = new Admin();
                                     <form action="admin.php" method="post">
                                         <section><input type="text" id="newTitle" name="newTitle" placeholder="Nouveau Titre"></section>
                                         <section><input type="text" id="newArticle" name="newArticle" placeholder="Nouvel Article"></section>
-                                        <section><input type="submit" id="validNewArticle" name="validNewArticle" value="Valider"></section>
+                                        <section><input type="submit" id="validNewArticle" name="validNewArticle" value="Modifier"></section>
                                     </form>
                                     ');
-
-                                    // appel de la méthod
                                 }
                                 ?>
                             </section>
