@@ -26,22 +26,48 @@ class Articles extends Model{
         return $count;
     }
 
-    /*public function pagesArticles(){
+    // Test tri cat
+    public function getAllCategories(){
 
-        $sql = "SELECT * FROM `articles` WHERE `date` ORDER BY date DESC";
+        $sql = "SELECT * FROM categories";
 
-        $query = $this->pdo-> prepare($sql);
-        $query->execute();
+        $result = $this->pdo-> prepare($sql);
+        $result->execute();
 
-        $article = $query->fetchAll(PDO::FETCH_ASSOC);
+        $i=0;
 
-        foreach($article as $articles){
+        while ($fetch = $result->fetch(PDO::FETCH_ASSOC)){
 
-            $_GET['id'] = @$articles['id'];
-
-            echo '<h2>' .$articles['titre']. '</h2><p>' . $articles['article'] . '</p><a href="article.php?id='.$_GET['id'].'"> Lire l\'article en entier !</a><p> Posté le : ' .$articles['date'] .'</p><hr>';
+            $tab[$i][]=$fetch['id'];
+            $tab[$i][]=$fetch['nom'];
+            $i++;
         }
-    }*/
+        return $tab;
+    }
+
+    public function getChoix($nom){
+
+        $sql = "SELECT * FROM articles AS a INNER JOIN categories AS c ON c.nom=:nom WHERE c.id=a.id_categorie ORDER BY date";
+
+        $result = $this->pdo-> prepare($sql);
+        $result->bindValue(':nom', $nom);
+        $result->execute();
+
+        $i =0;
+
+        while ($fetch = $result->fetch(PDO::FETCH_ASSOC)){
+
+            $tableau[$i][] = $fetch['id'];
+            $tableau[$i][] = $fetch['titre'];
+            $tableau[$i][] = $fetch['article'];
+            $tableau[$i][] = $fetch['id_utilisateur'];
+            $tableau[$i][] = $fetch['id_categorie'];
+            $tableau[$i][] = $fetch['date'];
+
+            $i++;
+        }
+        return $tableau;
+    }
 
     public function pagesArticles(){
 
@@ -71,11 +97,12 @@ class Articles extends Model{
 
         $article = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach($article as $articles){
+        foreach($article as $articles) {
 
             $_GET['id'] = @$articles['id'];
 
-            echo '<h2>' .$articles['titre']. '</h2><p>' . $articles['article'] . '</p><a href="article.php?id='.$_GET['id'].'"> Lire l\'article en entier !</a><p> Posté le : ' .$articles['date'] .'</p><hr>';
+            echo '<h2>' . $articles['titre'] . '</h2><p>' . $articles['article'] . '</p><a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><p> Posté le : ' . $articles['date'] . '</p><hr>';
+
         }
 
         for($i=1; $i<=$nbPage; $i++){
@@ -85,11 +112,9 @@ class Articles extends Model{
             else{
                 echo " <a href=\"articles.php?p=$i\"> $i  </a>/ ";
             }
-
-
         }
-
     }
+
 }
 
 ?>
