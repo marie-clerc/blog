@@ -13,7 +13,6 @@ $tab = $triCategorie ->getAllCategories();
 
 ?>
 
-
 <main>
     <article>
         <section class="container-fluid">
@@ -43,20 +42,16 @@ $tab = $triCategorie ->getAllCategories();
                 <section class="article1">
                     <?php
 
-                    //Transfert données du select pour afficher la page trier par catégories
-
                     if(isset($_GET['search'])){
 
                         $affichage = $triCategorie->getChoix($_GET['Choix']);
-
-                        //$affichage ça devrait etre le return d'un controlleur et dans le controleur -> GET Choix car c'est du sql
 
                         foreach ($affichage as $value){
 
                             $_GET['id'] = $value[0];
 
                             echo '<h2>' . $value[1] . '</h2>
-                                   <p>' . $value[2] . '</p>
+                                   <p>' . substr($value[2],0,150) . '</p>
                                    <p> Posté le : ' . $value[5] . '</p>
                                    <a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><hr>';
                         }

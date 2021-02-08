@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -7,3 +9,28 @@ html{
     scroll-behavior: smooth;
 }
 
+header{
+    font-family: 'Amatic SC', cursive;
+    background-color: white;
+}
+
+li a{
+    transition: 0.5s;
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+}
+
+li a:hover{
+    color: #557d9f;
+}
+
+li a i{
+    font-size: 25px;
+}
+
+footer{
+    margin-top: 0%;
+    bottom: 0;
+    width: 100%;
+}
