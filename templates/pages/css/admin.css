@@ -2,11 +2,22 @@ body{
     background-color: #f0f0f0;
 }
 
-.admin__content{
-    margin-top: 15%;
-    width: 40%;
-    border-radius: 22px;
+.admin-content{
+    width: 100%;
+    height: 85vh;
     background: linear-gradient(45deg, #f0f0f0, #cacaca);
-    box-shadow:  22px -22px 42px #bebebe,
-    -22px 22px 42px #ffffff;
+}
+
+table{
+    width: 165%;
+    text-align: center;
+}
+
+th{
+    border-bottom: solid 1px #fff;
+}
+
+.btn-Article{
+    margin-left: 2%;
+    margin-top: 1%;
 }

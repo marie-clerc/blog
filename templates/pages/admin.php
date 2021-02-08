@@ -11,8 +11,13 @@ if (isset($_POST['logout'])){
     exit();
 }
 
-$test = new Admin();
-$test -> modifyArticles();
+if (!isset($_SESSION['id']))
+{
+    Http::redirect('connexion.php');
+    exit();
+}
+
+$adminManager = new Admin();
 
 ?>
 
@@ -24,7 +29,7 @@ $test -> modifyArticles();
 
 <main>
     <article>
-        <section class="container admin__content">
+        <section class="container-fluid admin-content">
             <section class="d-flex align-items-start">
                 <section class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Gestion Articles</a>
@@ -34,60 +39,47 @@ $test -> modifyArticles();
                 </section>
                 <section class="tab-content" id="v-pills-tabContent">
                     <section class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-articles-tab">
-                        <form action="" method="get">
-                            <label for="allArticles"></label>
-                            <select name="allArticles">
-                                <?php
-                                    $name = $test -> showArticles();
-
-                                    $i = 0;
-                                    foreach ($name as $value)
-                                    {
-                                        echo ('<option value="$value[1]">' . $value[1] . '</option>');
-                                        $i++;
-                                    }
-                                ?>
-                            </select>
-
+                        <table>
+                            <thead>
+                            <th>#</th>
+                            <th>Titre</th>
+                            <th>Article</th>
+                            <th>Id_utilisateur</th>
+                            <th>Id_catégorie</th>
+                            <th>Date</th>
+                            </thead>
+                            <tbody>
                             <?php
+                            $articles = $adminManager -> getAllArticles();
 
-                            /*
-                             * if isset de du name
-                             * alors on envoie le name dans une fonction sql qui va comparer le name[titre] -> recuperer l'id qui appartient au titre
-                             * recupere tout ou y'a l'id
-                             *
-                             * ensuite ça te permet de tout afficher pour pouvoir modifier avec les données sous les yeux
-                             *
-                             * t'aura alors un bouton envoyer les modification avec un name'SubmitUpdate'
-                             * donner les POST de ton formulaire de modification et if isset de submitupdate tu va mettre tes valeurs post dans une fonction update que tu appel
-                             *
-                             *  envoyer alors on prend les valeur en get que l'on met dans une fonction sql qui va
-                             *
-                             * */
-
-
-
-
+                            foreach ($articles as $allArticles)
+                            {
+                                echo ('<form action="admin.php" method="get"><tr><td>' . $allArticles['id'] . '</td>
+                                           <td>' . $allArticles['titre'] . '</td>
+                                           <td>' . $allArticles['article'] . '</td>
+                                           <td>' . $allArticles['id_utilisateur'] . '</td>
+                                           <td>' . $allArticles['id_categorie'] . '</td>
+                                           <td>' . $allArticles['date'] . '</td>
+                                           <td>
+                                            <input type="submit" class="btn btn-primary btn-Article" id="modify_Article" name="modifyArticle" value="Modifier">
+                                            <input type="hidden" id="hiddenModifyArticle" name="hiddenModifyArticle" value="' . $allArticles['id'] . '">
+                                            
+                                            <input type="submit" class="btn btn-danger btn-Article" id="delete_Article" name="deleteArticle" value="Supprimer">
+                                            <input type="hidden" id="hiddenDeleteArticle" name="hiddenDeleteArticle" value="' . $allArticles['id'] . '">
+                                           </td>
+                                       </tr></form>');
+                            }
                             ?>
-                            <label for="modifyArticles"></label>
-                            <input type="submit" id="modifyArticles" name="modifyArticles" value="Selectionner">
-                            <section>
-                                <?php
-                                if (isset($_POST['modifyArticles']))
-                                {
-                                    // $result = function ($_GET['allArticles]
-                                    // id = result[1]
-                                    echo ('
-                                    <form action="admin.php" method="post">
-                                        <section><input type="text" id="newTitle" name="newTitle" placeholder="Nouveau Titre"></section>
-                                        <section><input type="text" id="newArticle" name="newArticle" placeholder="Nouvel Article"></section>
-                                        <section><input type="submit" id="validNewArticle" name="validNewArticle" value="Modifier"></section>
-                                    </form>
-                                    ');
-                                }
-                                ?>
-                            </section>
-                        </form>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <?php
+                        if (isset($_GET['modifyArticle']))
+                        {
+                            $adminManager -> displayUpdateArticle($_GET['hiddenModifyArticle']);
+                        }
+                        /* Faire une fonction qui permet d'autoremplir le formulaire de modification d'article propre à l'id selectionné */
+                        ?>
                     </section>
                     <section class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-categories-tab"></section>
                     <section class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-users-tab"></section>
