@@ -28,7 +28,7 @@ class article extends Model
     public function createarticle() {
         if (isset($_POST["submit"])) {
             if ((empty($_POST["title"])) || (empty($_POST["article"])) || (empty($_POST["categories"]))) {
-                echo "veillez remplir tous les champs et selectionner une catégorie";
+                echo '<div class="alert alert-warning" role="alert">veillez remplir tous les champs et selectionner une catégorie</div>';
             }
             else {
                 $title = $_POST["title"];
@@ -46,12 +46,14 @@ class article extends Model
                 $sql2 = "INSERT INTO `articles`(`titre`, `article`, `id_utilisateur`, `id_categorie`, `date`)
                         VALUES(:titre, :article, :id_utilisateur, :id_categorie, CURRENT_TIMESTAMP)";
                 $stm2 = $this->pdo->prepare($sql2);
-                $stm2->execute([
+                if($stm2->execute([
                     'titre' => $title,
                     'article' => $article,
                     'id_utilisateur' => $id_utilisateur,
                     'id_categorie' => $id_categorie
-                ]);
+                ])) {
+                    header('location:../pages/articles.php');
+                }
             }
         }
     }

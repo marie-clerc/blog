@@ -82,18 +82,12 @@ class Articles extends Model{
                 FROM articles
                 INNER JOIN commentaires ON commentaires.id_article = articles.id
                 INNER JOIN utilisateurs ON utilisateurs.id = commentaires.id_utilisateur
-                WHERE articles.id = :idarticle';
+                WHERE articles.id = :idarticle
+                ORDER BY date ASC';
         $stm = $this->pdo->prepare($sql);
         $stm->execute(['idarticle'=>$id_article]);
         //var_dump($stm);
         return ($stm);
-
-    }
-
-    /**
-     * permet de refresh la page lors qu'on poste un commentaire
-     */
-    public function refresh() {
 
     }
 
@@ -104,19 +98,16 @@ class Articles extends Model{
     public function writecomments ($id) {
         if (isset($_POST["submit"])) {
             if (empty($_POST['comment'])) {
-                $this->refresh();
-                echo 'ecrivez un commentaire';
+                echo '<div class="alert alert-warning" role="alert">Ecrivez un commmentaire</div>';
             }
             else {
                 $comment = $_POST['comment'];
                 $id_article = $id;
                 $id_utilisateur = 1;
                 $sql = 'INSERT INTO `commentaires`(`commentaire`, `id_article`, `id_utilisateur`, `date`) 
-                    VALUES commentaire = :commentaire, id_article = :article, id_utilisateur= :utilisateur, CURRENT_TIMESTAMP';
+                    VALUES (:commentaire, :article, :utilisateur, CURRENT_TIMESTAMP)';
                 $stm = $this->pdo->prepare($sql);
-                if ($stm->execute(['commentaire'=> $comment, 'article'=> $id_article, 'utilisateur'=> $id_utilisateur])) {
-                    $this->refresh();
-                }
+                $stm->execute(['commentaire'=> $comment, 'article'=> $id_article, 'utilisateur'=> $id_utilisateur]);
             }
         }
     }
