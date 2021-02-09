@@ -10,14 +10,78 @@ body{
 
 table{
     width: 165%;
-    text-align: center;
 }
 
 th{
     border-bottom: solid 1px #fff;
+    text-align: center;
 }
 
-.btn-Article{
+td{
+    border: solid 1px #fff;
+    width: 10%;
+}
+/**
+-- Articles --
+ */
+
+.input-Article{
     margin-left: 2%;
     margin-top: 1%;
+}
+
+#update_title, #update_article{
+    width: 30%;
+}
+
+#update_article{
+    height: 10vh;
+    margin-top: 1%;
+}
+
+/**
+-- Catégories --
+ */
+
+.input-Category{
+    margin-top: 1%;
+}
+
+#update_Category{
+    width: 50%;
+}
+
+#valid_update{
+    margin-top: 1%;
+}
+
+/**
+-- Commentaires --
+ */
+
+.input-Comment{
+    margin-top: 1%;
+    margin-left: 2%;
+}
+
+/**
+-- Utilisateurs --
+ */
+
+#v-pills-users{
+    width: 95%;
+}
+
+#v-pills-users td{
+    height: 5vh;
+}
+
+.input-User{
+    margin-left: 2%;
+}
+
+#update_LoginAdmin, #update_PasswordAdmin, #update_EmailAdmin{
+    width: 60%;
+    height: 4vh;
+    margin-top: 0.5%;
 }
