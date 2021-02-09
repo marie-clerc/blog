@@ -1,11 +1,23 @@
-h1{
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+h1, h3{
+    font-family: 'Amatic SC', cursive;
+    color: black;
     text-align: center;
-    margin-top: 2%;
+}
+
+h2{
+    font-family: 'Amatic SC', cursive;
+    color: black;
 }
 
 .main-cont{
     min-height: 78vh;
-
     margin-top: 2%;
     display: grid;
     grid-template-columns: 33% 33% 33%;
@@ -21,13 +33,125 @@ hr{
 }
 
 .categories{
+    margin-top: 15%;
+    position: fixed;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
 }
 
+form{
+    text-align: center;
+}
+
 .article1{
+    border-radius: 20px;
+    background-color: #E4F5EE;
+    padding: 3%;
     grid-column-start: 2;
-    grid-column-end: 3;
+    grid-column-end: 4;
     grid-row-start: 1;
+}
+
+.nPages{
+    transition: 0.5s;
+    font-weight: bolder;
+    margin-top: 5%;
+    color: white;
+    background-color: black;
+    padding: 2%;
+    border-radius: 10%;
+    border: solid black 2px;
+}
+
+.nPages:hover{
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+    background-color: white;
+    border: solid black 2px;
+}
+
+.nPagesA{
+
+    font-weight: bolder;
+    margin-top: 5%;
+    color: black;
+    background-color: white;
+    padding: 2%;
+    border-radius: 10%;
+    border: solid black 2px;
+}
+
+.nPagesA:hover{
+    color: black;
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+a{
+    transition: 0.5s;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #557d9f;
+    text-decoration: none;
+}
+
+.box select {
+    font-weight: bold;
+    background-color: #c1dbd2;
+    color: black;
+    padding: 1%;
+    width: 50%;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+}
+
+.box::before {
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20%;
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+    padding: 30px;
+}
+
+.valid{
+    border: solid black 2px;
+    border-radius: 10%;
+    transition: 0.5s;
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    padding: 1%;
+}
+
+.valid:hover{
+    border: solid black 2px;
+    color: black;
+    background-color: white;
+    font-weight: bold;
 }

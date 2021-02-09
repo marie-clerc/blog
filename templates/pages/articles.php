@@ -8,9 +8,6 @@ $css = "css/articles.css";
 
 ob_start();
 
-$triCategorie = new Articles();
-$tab = $triCategorie ->getAllCategories();
-
 ?>
 
 <main>
@@ -18,25 +15,30 @@ $tab = $triCategorie ->getAllCategories();
         <section class="container-fluid">
             <section class="main-cont">
                 <section class="categories">
-                    <h3>Choix des catégories</h3>
+                    <h3><i class="fas fa-list-ol"></i> Choix des catégories</h3>
+                    <p>Vers quelle catégorie d'articles souhaitez vous aller ?</p>
                     <form action="articles.php" method="get">
-                        <label for="Choix">Choix</label>
-                        <select name="Choix" >
+                        <section class="box">
+                            <select name="Choix">
 
-                            <?php
+                                <?php
 
-                            $i=0;
+                                $triCategorie = new Articles();
+                                $tab = $triCategorie ->getAllCategories();
 
-                            foreach ($tab as $value){
+                                $i=0;
 
-                                echo '<option value="'.$value[1].'">' . $value[1] . '</option>';
-                            }
+                                foreach ($tab as $value){
 
-                            $i++;
-                            ?>
+                                    echo '<option value="'.$value[1].'">' . $value[1] . '</option>';
+                                }
 
-                        </select>
-                        <input type="submit" name="search">
+                                $i++;
+                                ?>
+
+                            </select>
+                            <input class="valid" type="submit" name="search" value="Go !">
+                        </section>
                     </form>
                 </section>
                 <section class="article1">
@@ -44,19 +46,20 @@ $tab = $triCategorie ->getAllCategories();
 
                     if(isset($_GET['search'])){
 
-                        $affichage = $triCategorie->getChoix($_GET['Choix']);
+                        $_GET['id'] = $value[0];
+
+                        $affichage = $triCategorie->getChoix($_GET['Choix'],$_GET['id']);
 
                         foreach ($affichage as $value){
-
-                            $_GET['id'] = $value[0];
 
                             echo '<h2>' . $value[1] . '</h2>
                                    <p>' . substr($value[2],0,150) . '</p>
                                    <p> Posté le : ' . $value[5] . '</p>
-                                   <a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><hr>';
+                                   <i class="fas fa-arrow-right"></i> <a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><hr>';
                         }
                     }
                     else{
+                        echo '<h1><i class="fas fa-stream"></i> Tout les articles</h1><br>';
                         $affichageA = new Articles();
                         $affichageA ->pagesArticles();
                     }

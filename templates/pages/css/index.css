@@ -3,7 +3,9 @@
 
 body{
     font-family: 'Raleway', sans-serif;
-    background-color: #E4F5EE;
+    background-image: url("../images/bg.png");
+    background-size: cover;
+    /*background-color: #E4F5EE;*/
 }
 
 .main-cont{
@@ -155,29 +157,26 @@ img{
 }
 
 .btn-grad {
-    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA  51%, #77A1D3  100%)
+    margin-top: 10%;
+    border: solid black 2px;
+    border-radius: 10px;
+    transition: 0.5s;
+    background-color: black;
+    font-weight: bold;
+    color: white;
+    padding: 1%;
 }
 
-.btn-grad{
-    color: black;
-    font-family: 'Amatic SC', cursive;
-    padding: 5px;
-    text-align: center;
-    transition: 0.5s;
-    background-size: 200% auto;
-    box-shadow: 0 0 20px #eee;
-    border-radius: 10px;
-    font-size: 22px;
-}
 
 .btn-grad:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
+    border: solid black 2px;
+    color: white;
+    background-color: #557d9f;
+    font-weight: bold;
 }
 
 .alert-css{
-    margin-top: 5%;
+    margin-top: 3%;
 }
 
 

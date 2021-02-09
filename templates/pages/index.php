@@ -33,14 +33,14 @@
                     <h2><i class="far fa-envelope"></i>  NewsLetter :</h2>
                     <form action="index.php" method="post">
                         <label for="email">Vous souhaitez être <br> informer des dernières sorties ?</label><br>
-                        <input name="email" type="email" placeholder="Entrez votre e-mail" required /><br><br>
+                        <input name="email" type="email" placeholder="Entrez votre e-mail" required /><br>
                         <button class="btn-grad" name="news" type="submit">S'abonner</button>
+                        <?php
+                        if(isset($_POST['email'])){
+                            echo '<p class="alert-css alert-info text-center" role="alert"><b>Merci</b> pour votre inscription.</p>';
+                        }
+                        ?>
                     </form>
-                    <?php
-                    if(isset($_POST['email'])){
-                        echo '<p class="alert-css alert-info text-center" role="alert"><b>Merci</b> pour votre inscription.</p>';
-                    }
-                    ?>
                 </section>
                 <section class="item6">
                     <h2>Nous sommes ici aussi !</h2>

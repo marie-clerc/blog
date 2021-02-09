@@ -5,6 +5,9 @@ require_once('Model.php');
 
 class Articles extends Model{
 
+
+    //Fonctions pour la page d'accueil.
+
     /**
      * Permet d'afficher les 3 derniers articles sur la page d'accueil.
      * @return mixed
@@ -26,10 +29,12 @@ class Articles extends Model{
         return $count;
     }
 
+    //Fonctions pour la page Articles.
+
     public function getAllCategories(){
 
         /**
-         * Permet de trier par catégories.
+         * Permet de trier par catégories pour ensuite choisir au niveau de la select box de la page Articles.
          * @return mixed
          */
 
@@ -49,45 +54,16 @@ class Articles extends Model{
         return $tab;
     }
 
-    public function getChoix($nom){
-
-        /**
-         * Permet d'afficher uniquement les articles dont la catégorie a été choisi (pagination à ajouté sur le tri de catégorie).
-         * @return mixed
-         */
-
-        $sql = "SELECT * FROM articles AS a INNER JOIN categories AS c ON c.nom=:nom WHERE c.id=a.id_categorie ORDER BY date";
-
-        $result = $this->pdo-> prepare($sql);
-        $result->bindValue(':nom', $nom);
-        $result->execute();
-
-        $i =0;
-
-        while ($fetch = $result->fetch(PDO::FETCH_ASSOC)){
-
-            $tableau[$i][] = $fetch['id'];
-            $tableau[$i][] = $fetch['titre'];
-            $tableau[$i][] = $fetch['article'];
-            $tableau[$i][] = $fetch['id_utilisateur'];
-            $tableau[$i][] = $fetch['id_categorie'];
-            $tableau[$i][] = $fetch['date'];
-
-            $i++;
-        }
-        return $tableau;
-    }
-
     public function pagesArticles(){
 
         /**
-         * Permet d'afficher tous les articles ainsi que la pagination.
+         * Permet d'afficher TOUS les articles ainsi que la pagination en dessous.
          * @return mixed
          */
 
-        $sql ="SELECT COUNT(id) as nbArt FROM articles";
+        $sql1 ="SELECT COUNT(id) as nbArt FROM articles";
 
-        $query = $this->pdo-> prepare($sql);
+        $query = $this->pdo-> prepare($sql1);
         $query->execute();
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
@@ -104,9 +80,9 @@ class Articles extends Model{
             $cPage =1;
         }
 
-        $sql = "SELECT * FROM `articles` WHERE `date` ORDER BY date DESC LIMIT ".(($cPage-1)*$perPage).",$perPage";
+        $sql2 = "SELECT * FROM `articles` WHERE `date` ORDER BY date DESC LIMIT ".(($cPage-1)*$perPage).",$perPage";
 
-        $query = $this->pdo-> prepare($sql);
+        $query = $this->pdo-> prepare($sql2);
         $query->execute();
 
         $article = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -115,18 +91,50 @@ class Articles extends Model{
 
             $_GET['id'] = @$articles['id'];
 
-            echo '<h2>' . $articles['titre'] . '</h2><p>' . substr($articles['article'], 0, 150) . '...</p><a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><p> Posté le : ' . $articles['date'] . '</p><hr>';
+            echo '<h2>' . ucfirst($articles['titre']) . '</h2><p>' . substr($articles['article'], 0, 150) . '...</p><a href="article.php?id=' . $_GET['id'] . '"><i class="fas fa-arrow-right"></i> Lire l\'article en entier !</a><p><u> Posté le : ' . $articles['date'] . '</u></p><hr><br>';
 
         }
 
         for($i=1; $i<=$nbPage; $i++){
             if($i==$cPage){
-                echo " $i  / ";
+                echo "<a class='nPagesA'>$i</a>";
             }
             else{
-                echo " <a href=\"articles.php?p=$i\"> $i  </a>/ ";
+                echo " <a class='nPages' href=\"articles.php?p=$i\">$i</a>  ";
             }
         }
+    }
+
+    public function getChoix($nom,$id){
+
+        /**
+         * Permet d'afficher uniquement les articles dont la catégorie qui a été choisie (pagination à ajouté sur le tri de catégorie).
+         * @return mixed
+         */
+
+        $sql2 = "SELECT * FROM articles AS a INNER JOIN categories AS c ON c.nom=:nom WHERE c.id=a.id_categorie ORDER BY date DESC";
+
+        $result = $this->pdo-> prepare($sql2);
+        $result->bindValue(':nom', $nom);
+        $result->execute();
+
+
+
+        $i =0;
+
+        while ($fetch = $result->fetch(PDO::FETCH_ASSOC)){
+
+            $tableau[$i][] = $fetch['id'];
+            $tableau[$i][] = $fetch['titre'];
+            $tableau[$i][] = $fetch['article'];
+            $tableau[$i][] = $fetch['id_utilisateur'];
+            $tableau[$i][] = $fetch['id_categorie'];
+            $tableau[$i][] = $fetch['date'];
+
+            $i++;
+        }
+
+        return $tableau;
     }
 
 }
