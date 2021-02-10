@@ -109,7 +109,6 @@ class Admin extends Model
         ]);
 
         $result = $query -> fetch(PDO::FETCH_ASSOC);
-
         $_SESSION['nom'] = $result['nom'];
 
         return $_SESSION;
@@ -206,7 +205,7 @@ class Admin extends Model
      */
     public function replaceValueUsers($id): array
     {
-        $query = $this -> pdo -> prepare("SELECT login, password, email FROM utilisateurs WHERE id = :id");
+        $query = $this -> pdo -> prepare("SELECT * FROM utilisateurs WHERE id = :id");
         $query -> execute([
             "id" => $id
         ]);
@@ -216,6 +215,7 @@ class Admin extends Model
         $_SESSION['loginAdmin'] = $result['login'];
         $_SESSION['passwordAdmin'] = $result['password'];
         $_SESSION['emailAdmin'] = $result['email'];
+        $_SESSION['droitsAdmin'] = $result['id_droits'];
 
         return $result;
     }
@@ -230,32 +230,37 @@ class Admin extends Model
         $this -> replaceValueUsers($id);
         echo ('<form action="" method="post" style="margin-top: 5%">
                    <section class="container"><input type="text" id="update_LoginAdmin" name="updateLogin" value="' . $_SESSION['loginAdmin'] . '"></section>
-                   <section class="container"><input type="text" id="update_PasswordAdmin" name="updatePassword" value="' . $_SESSION['passwordAdmin'] . '"></section>
                    <section class="container"><input type="text" id="update_EmailAdmin" name="updateMail" value="' . $_SESSION['emailAdmin'] . '"></section>
+                   <section class="container"><label for="update_DroitsAdmin">(1337 = Administrateur | 42 = Modérateur | 1 = Membre)</label><br /><input type="text" id="update_DroitsAdmin" name="updateDroits" value="' . $_SESSION['droitsAdmin'] . '"></section>
                    <section class="container"><input type="submit" class="btn btn-warning" id="valid_update" name="validUpdate" value="Valider"></section>
                </form>');
 
         if (isset($_POST['validUpdate']))
         {
             $updateLogin = htmlspecialchars(trim($_POST['updateLogin']));
-            $updatePassword = htmlspecialchars(trim($_POST['updatePassword']));
             $updateEmail = htmlspecialchars(trim($_POST['updateMail']));
+            $updateDroits = htmlspecialchars(trim($_POST['updateDroits']));
 
-            $hashUpdatePassword = password_hash($updatePassword, PASSWORD_BCRYPT);
+            if ($updateDroits == 1337 || $updateDroits == 42 || $updateDroits == 1)
+            {
+                $query = $this -> pdo -> prepare("UPDATE utilisateurs SET login = :login, email = :email, id_droits = :droit WHERE id = :id");
+                $query -> execute([
+                    "login" => $updateLogin,
+                    "email" => $updateEmail,
+                    "droit" => $updateDroits,
+                    "id" => $id
+                ]);
 
-            $query = $this -> pdo -> prepare("UPDATE utilisateurs SET login = :login, email = :email, password = :password WHERE id = :id");
-            $query -> execute([
-                "login" => $updateLogin,
-                "email" => $updateEmail,
-                "password" => $hashUpdatePassword,
-                "id" => $id
-            ]);
+                $_SESSION['loginAdmin'] = $updateLogin;
+                $_SESSION['emailAdmin'] = $updateEmail;
+                $_SESSION['droitsAdmin'] = $updateDroits;
 
-            $_SESSION['loginAdmin'] = $updateLogin;
-            $_SESSION['passwordAdmin'] = $hashUpdatePassword;
-            $_SESSION['emailAdmin'] = $updateEmail;
-
-            Http::redirect("../pages/admin.php");
+                Http::redirect("../pages/admin.php");
+            }
+            else
+            {
+                echo ('Erreur: le droit n\'existe pas');
+            }
         }
     }
 

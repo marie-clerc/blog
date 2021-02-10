@@ -36,7 +36,6 @@ $adminManager = new Admin();
                     <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Gestion Catégories</a>
                     <a class="nav-link" id="v-pills-comments-tab" data-bs-toggle="pill" href="#v-pills-comments" role="tab" aria-controls="v-pills-comments" aria-selected="false">Gestion Commentaires</a>
                     <a class="nav-link" id="v-pills-users-tab" data-bs-toggle="pill" href="#v-pills-users" role="tab" aria-controls="v-pills-users" aria-selected="false">Gestion Utilisateurs</a>
-                    <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Accès & Droits</a>
                 </section>
                 <section class="tab-content" id="v-pills-tabContent">
                     <!-- GESTION DES ARTICLES -->
@@ -223,7 +222,6 @@ $adminManager = new Admin();
                         }
                         ?>
                     </section>
-                    <section class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-access&roles-tab"></section>
                 </section>
             </section>
         </section>
