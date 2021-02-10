@@ -73,7 +73,6 @@ form{
 }
 
 .nPagesA{
-
     font-weight: bolder;
     margin-top: 5%;
     color: black;
@@ -101,7 +100,7 @@ a:hover{
     text-decoration: none;
 }
 
-.box select {
+.box select{
     font-weight: bold;
     background-color: #c1dbd2;
     color: black;
@@ -111,12 +110,10 @@ a:hover{
     font-size: 20px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
     -webkit-appearance: button;
-    appearance: button;
     outline: none;
 }
 
-.box::before {
-    font-family: FontAwesome;
+.box::before{
     position: absolute;
     top: 0;
     right: 0;
@@ -130,12 +127,12 @@ a:hover{
     pointer-events: none;
 }
 
-.box:hover::before {
+.box:hover::before{
     color: rgba(255, 255, 255, 0.6);
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.box select option {
+.box select option{
     padding: 30px;
 }
 

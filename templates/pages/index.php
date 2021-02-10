@@ -16,29 +16,33 @@
                 <section class="item2">
                     <h2><i class="fas fa-globe-europe"></i>  Nouveautés </h2>
                     <iframe src="https://www.youtube.com/embed/9XzBeUUATbE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <p>Avec plus de 8 millions de vues, cette vidéo a touchée beaucoup d'entres nous de part ses témoignages poignats.</p>
+                    <p>Avec plus de 8 millions de vues, cette vidéo a touchée beaucoup d'entre nous de part ses témoignages poignants.</p>
                 </section>
                 <section class="item3">
                     <h2><i class="far fa-newspaper"></i>  Les derniers articles</h2>
                     <?php
+
                     $affichage = new Articles();
                     $affichage ->derniers();
+
                     ?>
                 </section>
                 <section class="item4">
                     <h2><i class="far fa-list-alt"></i>  Tous les articles</h2>
-                    <p><a href="articles.php"> Retrouvez tout nos articles <b>Ici !</b></a> </p>
+                    <p><a href="articles.php"> Retrouvez tous nos articles <b>Ici !</b></a> </p>
                 </section>
                 <section class="item5">
                     <h2><i class="far fa-envelope"></i>  NewsLetter :</h2>
                     <form action="index.php" method="post">
-                        <label for="email">Vous souhaitez être <br> informer des dernières sorties ?</label><br>
+                        <label for="email">Vous souhaitez être <br> informé des dernières sorties ?</label><br>
                         <input name="email" type="email" placeholder="Entrez votre e-mail" required /><br>
                         <button class="btn-grad" name="news" type="submit">S'abonner</button>
                         <?php
+
                         if(isset($_POST['email'])){
                             echo '<p class="alert-css alert-info text-center" role="alert"><b>Merci</b> pour votre inscription.</p>';
                         }
+
                         ?>
                     </form>
                 </section>

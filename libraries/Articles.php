@@ -2,9 +2,7 @@
 
 require_once('Model.php');
 
-
 class Articles extends Model{
-
 
     //Fonctions pour la page d'accueil.
 
@@ -12,6 +10,7 @@ class Articles extends Model{
      * Permet d'afficher les 3 derniers articles sur la page d'accueil.
      * @return mixed
      */
+
     public function derniers(){
 
         $req = "SELECT id, titre, article, date FROM `articles` WHERE `date` ORDER BY date DESC LIMIT 3";
@@ -67,6 +66,7 @@ class Articles extends Model{
         $query->execute();
 
         $data = $query->fetch(PDO::FETCH_ASSOC);
+
         $nbArt = $data['nbArt'];
         $perPage = 5;
         $cPage =1;
@@ -91,11 +91,14 @@ class Articles extends Model{
 
             $_GET['id'] = @$articles['id'];
 
-            echo '<h2>' . ucfirst($articles['titre']) . '</h2><p>' . substr($articles['article'], 0, 150) . '...</p><a href="article.php?id=' . $_GET['id'] . '"><i class="fas fa-arrow-right"></i> Lire l\'article en entier !</a><p><u> Posté le : ' . $articles['date'] . '</u></p><hr><br>';
-
+            echo '<h2>' . ucfirst($articles['titre']) . '</h2>
+                  <p>' . substr($articles['article'], 0, 150) . '...</p>
+                  <a href="article.php?id=' . $_GET['id'] . '"><i class="fas fa-arrow-right"></i> Lire l\'article en entier !</a>
+                  <p><u> Posté le : ' . $articles['date'] . '</u></p><hr><br>';
         }
 
         for($i=1; $i<=$nbPage; $i++){
+
             if($i==$cPage){
                 echo "<a class='nPagesA'>$i</a>";
             }
@@ -108,7 +111,7 @@ class Articles extends Model{
     public function getChoix($nom,$id){
 
         /**
-         * Permet d'afficher uniquement les articles dont la catégorie qui a été choisie (pagination à ajouté sur le tri de catégorie).
+         * Permet d'afficher uniquement les articles dont la catégorie qui a été choisie.
          * @return mixed
          */
 
@@ -117,8 +120,6 @@ class Articles extends Model{
         $result = $this->pdo-> prepare($sql2);
         $result->bindValue(':nom', $nom);
         $result->execute();
-
-
 
         $i =0;
 
@@ -133,7 +134,6 @@ class Articles extends Model{
 
             $i++;
         }
-
         return $tableau;
     }
 

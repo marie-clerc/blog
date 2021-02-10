@@ -20,7 +20,6 @@ ob_start();
                     <form action="articles.php" method="get">
                         <section class="box">
                             <select name="Choix">
-
                                 <?php
 
                                 $triCategorie = new Articles();
@@ -34,8 +33,8 @@ ob_start();
                                 }
 
                                 $i++;
-                                ?>
 
+                                ?>
                             </select>
                             <input class="valid" type="submit" name="search" value="Go !">
                         </section>
