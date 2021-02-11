@@ -1,7 +1,7 @@
 <!-- Footer de Blog -->
 <footer>
-    <section class="page-footer font-small fixed-bottom">
-        <section class="footer-copyright text-center py-3">© 2020 Copyright
+    <section class="page-footer font-small">
+        <section class="footer-copyright text-center py-3">© 2021 Copyright
             <a href="">Marie Clerc</a> - <a href="">Guillaume Grac</a> - <a href="">William Kies</a>
         </section>
     </section>
