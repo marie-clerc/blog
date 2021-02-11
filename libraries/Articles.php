@@ -7,10 +7,6 @@ class Articles extends Model{
     //Fonctions pour la page d'accueil.
 
     /**
-     * CODE GUILLAUME
-     */
-
-    /**
      * Permet d'afficher les 3 derniers articles sur la page d'accueil.
      * @return mixed
      */
@@ -24,9 +20,9 @@ class Articles extends Model{
 
         while ($count = $art->fetch(PDO::FETCH_ASSOC)){
 
-                $_GET['id'] = @$count['id'];
+            $_GET['id'] = @$count['id'];
 
-                echo '<p><b>' . ucfirst(substr($count['titre'],0,30)) . '   <a href="article.php?id='.$_GET['id'].'"><u>Voir plus !</u></b></a> <br> posté le ' . $count['date'] .  '</p>';
+            echo '<p><b>' . ucfirst(substr($count['titre'],0,30)) . '   <a href="article.php?id='.$_GET['id'].'"><u>Voir plus !</u></b></a> <br> posté le ' . $count['date'] .  '</p>';
 
         }
         return $count;
@@ -194,7 +190,7 @@ class Articles extends Model{
             else {
                 $comment = $_POST['comment'];
                 $id_article = $id;
-                $id_utilisateur = 1;
+                $id_utilisateur = $_SESSION['id'];
                 $sql = 'INSERT INTO `commentaires`(`commentaire`, `id_article`, `id_utilisateur`, `date`) 
                     VALUES (:commentaire, :article, :utilisateur, CURRENT_TIMESTAMP)';
                 $stm = $this->pdo->prepare($sql);

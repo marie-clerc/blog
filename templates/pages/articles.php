@@ -1,74 +1,81 @@
 <?php
 
+require_once ('../../libraries/autoload.php');
 
 require ('../../libraries/Articles.php');
-session_start() ?>
 
-$css = "css/articles.css";
+session_start();
+if (isset($_POST['logout'])){
 
-ob_start();
-
+    session_destroy();
+    Http::redirect('connexion.php');
+    exit();
+}
 ?>
 
-<main>
-    <article>
-        <section class="container-fluid">
-            <section class="main-cont">
-                <section class="categories">
-                    <h3><i class="fas fa-list-ol"></i> Choix des catégories</h3>
-                    <p>Vers quelle catégorie d'articles souhaitez vous aller ?</p>
-                    <form action="articles.php" method="get">
-                        <section class="box">
-                            <select name="Choix">
-                                <?php
+<?php $css = "css/articles.css"; ?>
 
-                                $triCategorie = new Articles();
-                                $tab = $triCategorie ->getAllCategories();
+<?php ob_start(); ?>
 
-                                $i=0;
+    <main>
+        <article>
+            <section class="container-fluid">
+                <section class="main-cont">
+                    <section class="categories">
+                        <h3><i class="fas fa-list-ol"></i> Choix des catégories</h3>
+                        <p>Vers quelle catégorie d'articles souhaitez vous aller ?</p>
+                        <form action="articles.php" method="get">
+                            <section class="box">
+                                <select name="Choix">
+                                    <?php
 
-                                foreach ($tab as $value){
+                                    $triCategorie = new Articles();
+                                    $tab = $triCategorie ->getAllCategories();
 
-                                    echo '<option value="'.$value[1].'">' . $value[1] . '</option>';
-                                }
+                                    $i=0;
 
-                                $i++;
+                                    foreach ($tab as $value){
 
-                                ?>
-                            </select>
-                            <input class="valid" type="submit" name="search" value="Go !">
-                        </section>
-                    </form>
-                </section>
-                <section class="article1">
-                    <?php
+                                        echo '<option value="'.$value[1].'">' . $value[1] . '</option>';
+                                    }
 
-                    if(isset($_GET['search'])){
+                                    $i++;
 
-                        $_GET['id'] = $value[0];
+                                    ?>
+                                </select>
+                                <input class="valid" type="submit" name="search" value="Go !">
+                            </section>
+                        </form>
+                    </section>
+                    <section class="article1">
+                        <?php
 
-                        $affichage = $triCategorie->getChoix($_GET['Choix'],$_GET['id']);
+                        if(isset($_GET['search'])){
 
-                        foreach ($affichage as $value){
+                            $_GET['id'] = $value[0];
 
-                            echo '<h2>' . $value[1] . '</h2>
+                            $affichage = $triCategorie->getChoix($_GET['Choix'],$_GET['id']);
+
+                            foreach ($affichage as $value){
+
+                                echo '<h2>' . $value[1] . '</h2>
                                    <p>' . substr($value[2],0,150) . '</p>
                                    <p> Posté le : ' . $value[5] . '</p>
                                    <i class="fas fa-arrow-right"></i> <a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><hr>';
+                            }
                         }
-                    }
-                    else{
-                        echo '<h1><i class="fas fa-stream"></i> Tout les articles</h1><br>';
-                        $affichageA = new Articles();
-                        $affichageA ->pagesArticles();
-                    }
+                        else{
+                            echo '<h1><i class="fas fa-stream"></i> Tout les articles</h1><br>';
+                            $affichageA = new Articles();
+                            $affichageA ->pagesArticles();
+                        }
 
-                    ?>
+                        ?>
+                    </section>
                 </section>
             </section>
-        </section>
-    </article>
-</main>
+        </article>
+    </main>
 
 <?php $content = ob_get_clean(); ?>
 

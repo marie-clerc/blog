@@ -12,21 +12,21 @@ $articles->writecomments($_GET['id']);
 <?php ob_start();?>
 <div class="main">
     <?php
-        $mainarticle = $articles->showarticle($_GET['id']);
-            foreach ($mainarticle as $value ) {
-                echo '<div class="card"><div class="card-body">
+    $mainarticle = $articles->showarticle($_GET['id']);
+    foreach ($mainarticle as $value ) {
+        echo '<div class="card"><div class="card-body">
                             <h5 class="card-title">'. $value['titre'] .'</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Ecrit par : '. $value['login'] .' le : ' . $value['date'] .'</h6>
                             <p class="card-text">'. $value['article'] .'</p></div></div>';
-                //var_dump($_GET);
-            }
-            ?>
+        //var_dump($_GET);
+    }
+    ?>
     <div class="commentaires">
         <h6>Commentaires : </h6>
         <?php
-            $commentaire = $articles->showcomments($_GET['id']);
-                foreach ($commentaire as $value ) {
-                    echo '<div class="card mb-3" style="width: 100%">
+        $commentaire = $articles->showcomments($_GET['id']);
+        foreach ($commentaire as $value ) {
+            echo '<div class="card mb-3" style="width: 100%">
                               <div class="row g-0">
                                 <div class="col-md-4">
                                         <h5 class="card-title">' . $value['login'] . '</h5>
@@ -39,8 +39,8 @@ $articles->writecomments($_GET['id']);
                                 </div>
                               </div>
                             </div>';
-                    //var_dump($value);
-                }
+            //var_dump($value);
+        }
         ?>
     </div>
 
@@ -55,5 +55,3 @@ $articles->writecomments($_GET['id']);
 <?php $content = ob_get_clean(); ?>
 
 <?php require("../layout.php");?>
-
-

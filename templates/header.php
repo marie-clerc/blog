@@ -1,4 +1,16 @@
-<!-- Header de Blog -->
+<?php
+require_once ('../../libraries/autoload.php');
+
+if (isset($_POST['logout'])){
+
+    session_destroy();
+    Http::redirect('connection.php');
+    exit();
+}
+?>
+<?php if (isset($_SESSION['id'])){$btnLogout = '<form method="POST" action="index.php"><input type="submit" name="logout" value="Déconnexion" class="btn btn-danger"></form>';}else{$btnLogout = NULL;} ?>
+
+    <!-- Header de Blog -->
 <head>
     <meta charset=UTF-8">
     <title></title>
@@ -25,9 +37,6 @@
                     <?php if (isset($_SESSION['id'])){echo ('<li class="nav-item"><a class="nav-link" href="profil.php"><i class="fas fa-user-circle"></i> | Profil</a></li>');} ?>
                     <?php if (isset($_SESSION['id'])){if ($_SESSION['id_droits'] == 1337 || $_SESSION['id_droits'] == 42){echo ('<li class="nav-item"><a class="nav-link" href="admin.php"><i class="fas fa-user-lock"></i> | Admins</a></li>');}} ?>
                     <?= $btnLogout ?>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <?php if (isset($_SESSION['id'])){ echo '<li><form method="POST" action="index.php"><button type="submit" class="btn btn-dark" name="logout" title="Déconnexion"><i class="fas fa-power-off"></i></button></form></li>';}?>
                 </ul>
             </section>
         </section>
