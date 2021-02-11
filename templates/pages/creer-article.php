@@ -1,7 +1,14 @@
 <?php
 require_once('../../libraries/autoload.php'); //charge TOUTES les class
 require '../../libraries/article.php';
-// session_start();
+
+session_start();
+if (isset($_POST['logout'])){
+
+    session_destroy();
+    Http::redirect('connexion.php');
+    exit();
+}
 $article = new article();
 // $_SESSION['article'] = $article;
 $article->createarticle();
@@ -21,11 +28,11 @@ $article->createarticle();
                     <textarea name="article" rows="5" class="form-control text"></textarea><br>
                     <label for="categorie"><h5>Catégories</h5></label><br>
                     <select name="categories" class="form-select" aria-label="Choisir une catégorie">
-                       <?php
-                            $nom = $article->findcategories();
-                            foreach ($nom as $value ) {
-                                    echo '<option >'. $value[1] .'</option>';
-                            }
+                        <?php
+                        $nom = $article->findcategories();
+                        foreach ($nom as $value ) {
+                            echo '<option >'. $value[1] .'</option>';
+                        }
                         ?>
                     </select>
                     <input type="submit" name="submit" value="Créer">

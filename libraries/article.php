@@ -33,7 +33,7 @@ class article extends Model
             else {
                 $title = $_POST["title"];
                 $article = $_POST["article"];
-                $id_utilisateur = 1;
+                $id_utilisateur = $_SESSION['id'];
                 $nom_categorie = $_POST['categories'];
 
                 //trouver comment connecter le nom_categorie avec id_categorie
