@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `blog`
 --
-
+CREATE DATABASE IF NOT EXISTS `blog`;
 -- --------------------------------------------------------
 
 --
