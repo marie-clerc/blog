@@ -108,15 +108,15 @@ class Articles extends Model{
         }
     }
 
-    public function getChoix($nom,$id){
+    public function getChoix($nom){
 
         /**
          * Permet d'afficher uniquement les articles dont la catégorie qui a été choisie.
          * @return mixed
          */
 
-        $sql2 = "SELECT * FROM articles AS a INNER JOIN categories AS c ON c.nom=:nom WHERE c.id=a.id_categorie ORDER BY date DESC";
-
+        //$sql2 = "SELECT * FROM articles AS a INNER JOIN categories AS c ON c.id=a.id_categorie WHERE c.nom=:nom ORDER BY date DESC";
+        $sql2 = "SELECT a.id as 'id_Article', `titre`, `article`,`id_utilisateur`,`id_categorie`,`date` FROM articles AS a INNER JOIN categories AS c ON c.id=a.id_categorie WHERE c.nom=:nom ORDER BY date DESC";
         $result = $this->pdo-> prepare($sql2);
         $result->bindValue(':nom', $nom);
         $result->execute();
@@ -124,8 +124,8 @@ class Articles extends Model{
         $i =0;
 
         while ($fetch = $result->fetch(PDO::FETCH_ASSOC)){
-
-            $tableau[$i][] = $fetch['id'];
+            //var_dump($fetch);
+            $tableau[$i][] = $fetch['id_Article'];
             $tableau[$i][] = $fetch['titre'];
             $tableau[$i][] = $fetch['article'];
             $tableau[$i][] = $fetch['id_utilisateur'];

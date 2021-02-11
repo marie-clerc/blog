@@ -43,7 +43,7 @@ if (isset($_POST['logout'])){
 
                                     ?>
                                 </select>
-                                <input class="valid" type="submit" name="search" value="Go !">
+                                <input class="valid" type="submit" name="search" value="Go">
                             </section>
                         </form>
                     </section>
@@ -54,14 +54,14 @@ if (isset($_POST['logout'])){
 
                             $_GET['id'] = $value[0];
 
-                            $affichage = $triCategorie->getChoix($_GET['Choix'],$_GET['id']);
+                            $affichage = $triCategorie->getChoix($_GET['Choix']);
 
                             foreach ($affichage as $value){
 
                                 echo '<h2>' . $value[1] . '</h2>
                                    <p>' . substr($value[2],0,150) . '</p>
                                    <p> Posté le : ' . $value[5] . '</p>
-                                   <i class="fas fa-arrow-right"></i> <a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><hr>';
+                                   <i class="fas fa-arrow-right"></i> <a href="article.php?id=' . $value[0] . '"> Lire l\'article en entier !</a><hr>';
 
                             }
                         }

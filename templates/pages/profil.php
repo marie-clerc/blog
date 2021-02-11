@@ -43,12 +43,12 @@ if (isset($_POST['update']))
                             <form action="profil.php" method="post">
                                 <section class="row mt-2">
                                     <section class="col-md-6">
-                                        <input type="text" class="form-control" name="newLogin" id="newLogin" placeholder="Name" value="<?php if (isset($_SESSION['id'])){ echo $_SESSION['login']; } ?>" required>
+                                        <input type="text" class="form-control" name="newLogin" id="newLogin" placeholder="New Name" required>
                                     </section>
                                 </section>
                                 <section class="row mt-2">
                                     <section class="col-md-6">
-                                        <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="Password" required>
+                                        <input type="password" class="form-control" name="newPassword" id="newPassword" placeholder="New Password" required>
                                     </section>
                                 </section>
                                 <section class="row mt-3">
@@ -58,7 +58,7 @@ if (isset($_POST['update']))
                                 </section>
                                 <section class="row mt-3">
                                     <section class="col-md-6">
-                                        <input type="email" class="form-control" name="newEmail" id="newEmail" placeholder="Email" value="<?php if (isset($_SESSION['id'])){ echo $_SESSION['email']; } ?>" required>
+                                        <input type="email" class="form-control" name="newEmail" id="newEmail" placeholder="Email" value="<?php echo $_SESSION['email'];?>" required>
                                     </section>
                                 </section>
                                 <section class="mt-5 text-right">
