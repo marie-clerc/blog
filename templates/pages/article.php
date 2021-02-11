@@ -14,7 +14,7 @@ $articles->writecomments($_GET['id']);
     <?php
     $mainarticle = $articles->showarticle($_GET['id']);
     foreach ($mainarticle as $value ) {
-        echo '<div class="card"><div class="card-body">
+        echo '<div class="card postarticle"><div class="card-body">
                             <h5 class="card-title">'. $value['titre'] .'</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Ecrit par : '. $value['login'] .' le : ' . $value['date'] .'</h6>
                             <p class="card-text">'. $value['article'] .'</p></div></div>';

@@ -32,7 +32,7 @@ if (isset($_POST['logout'])){
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link " href="index.php"><i class="fas fa-home"></i> | Home</a></li>
                     <li class="nav-item"><a class="nav-link " href="articles.php"><i class="fas fa-stream"></i> | Articles</a></li>
-                    <?php if (isset($_SESSION['id'])){echo ('<li class="nav-item"><a class="nav-link" href="creer-article.php"><i class="fas fa-plus"></i> | Ajouter</a></li>');} ?>
+                    <?php if (isset($_SESSION['id'])){if ($_SESSION['id_droits'] == 1337 || $_SESSION['id_droits'] == 42){echo ('<li class="nav-item"><a class="nav-link" href="creer-article.php"><i class="fas fa-plus"></i> | Ajouter</a></li>');}} ?>
                     <?php if (!isset($_SESSION['id'])){echo ('<li class="nav-item"><a class="nav-link" href="inscription.php"><i class="fas fa-user-plus"></i> | Inscription</a></li><li class="nav-item"><a class="nav-link" href="connexion.php"><i class="fas fa-door-open"></i> | Connexion</a></li>');} ?>
                     <?php if (isset($_SESSION['id'])){echo ('<li class="nav-item"><a class="nav-link" href="profil.php"><i class="fas fa-user-circle"></i> | Profil</a></li>');} ?>
                     <?php if (isset($_SESSION['id'])){if ($_SESSION['id_droits'] == 1337 || $_SESSION['id_droits'] == 42){echo ('<li class="nav-item"><a class="nav-link" href="admin.php"><i class="fas fa-user-lock"></i> | Admins</a></li>');}} ?>

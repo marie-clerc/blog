@@ -134,6 +134,7 @@ class Articles extends Model{
 
             $i++;
         }
+
         return $tableau;
     }
 

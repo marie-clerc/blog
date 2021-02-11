@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d2e6eba-aa9f-4568-987e-7c005bd48f1c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/templates/pages/css/admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libraries/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/Admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libraries/Articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/libraries/Articles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/article.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/article.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/articles.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/articles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/creer-article.php" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/creer-article.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/pages/css/creer-article.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/css/creer-article.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/pages/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/templates/pages/css/index.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +42,8 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mirumee-saleor-98ebf96" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -62,6 +69,7 @@
       <workItem from="1612357803323" duration="34000" />
       <workItem from="1612357839527" duration="67415000" />
       <workItem from="1612957035189" duration="35000" />
+      <workItem from="1613035067064" duration="12182000" />
     </task>
     <servers />
   </component>

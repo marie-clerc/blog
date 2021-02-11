@@ -27,35 +27,35 @@ $adminManager = new Admin();
 
 <?php ob_start(); ?>
 
-<main>
-    <article>
-        <section class="container-fluid admin-content">
-            <section class="d-flex align-items-start">
-                <section class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                    <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Gestion Articles</a>
-                    <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Gestion Catégories</a>
-                    <a class="nav-link" id="v-pills-comments-tab" data-bs-toggle="pill" href="#v-pills-comments" role="tab" aria-controls="v-pills-comments" aria-selected="false">Gestion Commentaires</a>
-                    <a class="nav-link" id="v-pills-users-tab" data-bs-toggle="pill" href="#v-pills-users" role="tab" aria-controls="v-pills-users" aria-selected="false">Gestion Utilisateurs</a>
-                </section>
-                <section class="tab-content" id="v-pills-tabContent">
-                    <!-- GESTION DES ARTICLES -->
-                    <section class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-articles-tab">
-                        <table>
-                            <thead>
-                            <th>#</th>
-                            <th>Titre</th>
-                            <th>Article</th>
-                            <th>Id_utilisateur</th>
-                            <th>Id_catégorie</th>
-                            <th>Date</th>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $articles = $adminManager -> getAllArticles();
+    <main>
+        <article>
+            <section class="container-fluid admin-content">
+                <section class="d-flex align-items-start">
+                    <section class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Gestion Articles</a>
+                        <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Gestion Catégories</a>
+                        <a class="nav-link" id="v-pills-comments-tab" data-bs-toggle="pill" href="#v-pills-comments" role="tab" aria-controls="v-pills-comments" aria-selected="false">Gestion Commentaires</a>
+                        <a class="nav-link" id="v-pills-users-tab" data-bs-toggle="pill" href="#v-pills-users" role="tab" aria-controls="v-pills-users" aria-selected="false">Gestion Utilisateurs</a>
+                    </section>
+                    <section class="tab-content" id="v-pills-tabContent">
+                        <!-- GESTION DES ARTICLES -->
+                        <section class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-articles-tab">
+                            <table>
+                                <thead>
+                                <th>#</th>
+                                <th>Titre</th>
+                                <th>Article</th>
+                                <th>Id_utilisateur</th>
+                                <th>Id_catégorie</th>
+                                <th>Date</th>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $articles = $adminManager -> getAllArticles();
 
-                            foreach ($articles as $allArticles)
-                            {
-                                echo ('<form action="" method="get">
+                                foreach ($articles as $allArticles)
+                                {
+                                    echo ('<form action="" method="get">
                                            <tr>
                                                <td style="text-align: center">' . $allArticles['id'] . '</td>
                                                <td style="padding-left: 0.2%;">' . $allArticles['titre'] . '</td>
@@ -72,37 +72,38 @@ $adminManager = new Admin();
                                                </td>
                                            </tr>
                                            </form>');
+                                }
+                                ?>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <?php
+                            if (isset($_GET['modifyArticle']))
+                            {
+                                $adminManager -> displayUpdateArticle($_GET['hiddenModifyArticle']);
+                            }
+
+                            if (isset($_GET['deleteArticle']))
+                            {
+                                $adminManager -> deleteArticle($_GET['hiddenDeleteArticle']);
                             }
                             ?>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <?php
-                        if (isset($_GET['modifyArticle']))
-                        {
-                            $adminManager -> displayUpdateArticle($_GET['hiddenModifyArticle']);
-                        }
+                        </section>
+                        <!-- GESTION DES CATEGORIES -->
+                        <section class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-categories-tab">
+                            <table>
+                                <thead>
+                                <th><?php echo ('<form action="" method="get"><input type="submit" class="btn btn-success" id="create_Category" name="createCategory" value="Ajouter"></form>'); ?></th>
+                                <th>#</th>
+                                <th>Nom</th>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $categories = $adminManager -> getAllCategories();
 
-                        if (isset($_GET['deleteArticle']))
-                        {
-                            $adminManager -> deleteArticle($_GET['hiddenDeleteArticle']);
-                        }
-                        ?>
-                    </section>
-                    <!-- GESTION DES CATEGORIES -->
-                    <section class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-categories-tab">
-                        <table>
-                            <thead>
-                            <th>#</th>
-                            <th>Nom</th>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $categories = $adminManager -> getAllCategories();
-
-                            foreach ($categories as $allCategories)
-                            {
-                                echo ('<form action="" method="get">
+                                foreach ($categories as $allCategories)
+                                {
+                                    echo ('<form action="" method="get">
                                            <tr>
                                                <td style="text-align: center">' . $allCategories['id'] . '</td>
                                                <td style="padding-left: 0.3%;">' . $allCategories['nom'] . '</td>
@@ -115,40 +116,45 @@ $adminManager = new Admin();
                                                </td>
                                            </tr>
                                            </form>');
+                                }
+                                ?>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <?php
+                            if (isset($_GET['modifyCategory']))
+                            {
+                                $adminManager -> displayUpdateCategory($_GET['hiddenModifyCategory']);
+                            }
+
+                            if (isset($_GET['deleteCategory']))
+                            {
+                                $adminManager -> deleteCategory($_GET['hiddenDeleteCategory']);
+                            }
+
+                            if (isset($_GET['createCategory']))
+                            {
+                                $adminManager -> displayCreateCategory();
                             }
                             ?>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <?php
-                        if (isset($_GET['modifyCategory']))
-                        {
-                            $adminManager -> displayUpdateCategory($_GET['hiddenModifyCategory']);
-                        }
+                        </section>
+                        <!-- GESTION DES COMMENTAIRES -->
+                        <section class="tab-pane fade" id="v-pills-comments" role="tabpanel" aria-labelledby="v-pills-comments-tab">
+                            <table>
+                                <thead>
+                                <th>#</th>
+                                <th>Commentaire</th>
+                                <th>Id_article</th>
+                                <th>Id_utilisateur</th>
+                                <th>Date</th>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $comments = $adminManager -> getAllComments();
 
-                        if (isset($_GET['deleteCategory']))
-                        {
-                            $adminManager -> deleteCategory($_GET['hiddenDeleteCategory']);
-                        }
-                        ?>
-                    </section>
-                    <!-- GESTION DES COMMENTAIRES -->
-                    <section class="tab-pane fade" id="v-pills-comments" role="tabpanel" aria-labelledby="v-pills-comments-tab">
-                        <table>
-                            <thead>
-                            <th>#</th>
-                            <th>Commentaire</th>
-                            <th>Id_article</th>
-                            <th>Id_utilisateur</th>
-                            <th>Date</th>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $comments = $adminManager -> getAllComments();
-
-                            foreach ($comments as $allComments)
-                            {
-                                echo ('<form action="" method="get">
+                                foreach ($comments as $allComments)
+                                {
+                                    echo ('<form action="" method="get">
                                            <tr>
                                                <td style="text-align: center">' . $allComments['id'] . '</td>
                                                <td style="padding-left: 0.2%">' . $allComments['commentaire'] . '</td>
@@ -161,35 +167,35 @@ $adminManager = new Admin();
                                                </td>
                                            </tr>
                                            </form>');
+                                }
+                                ?>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <?php
+                            if (isset($_GET['deleteComment']))
+                            {
+                                $adminManager -> deleteComment($_GET['hiddenDeleteComment']);
                             }
                             ?>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <?php
-                        if (isset($_GET['deleteComment']))
-                        {
-                            $adminManager -> deleteComment($_GET['hiddenDeleteComment']);
-                        }
-                        ?>
-                    </section>
-                    <!-- GESTION DES UTILISATEURS -->
-                    <section class="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
-                        <table>
-                            <thead>
-                            <th>#</th>
-                            <th>Login</th>
-                            <th>Password</th>
-                            <th>E-mail</th>
-                            <th>id_droits</th>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $users = $adminManager -> getAllUsers();
+                        </section>
+                        <!-- GESTION DES UTILISATEURS -->
+                        <section class="tab-pane fade" id="v-pills-users" role="tabpanel" aria-labelledby="v-pills-users-tab">
+                            <table>
+                                <thead>
+                                <th>#</th>
+                                <th>Login</th>
+                                <th>Password</th>
+                                <th>E-mail</th>
+                                <th>id_droits</th>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $users = $adminManager -> getAllUsers();
 
-                            foreach ($users as $allUsers)
-                            {
-                                echo ('<form action="" class="user_table" method="get">
+                                foreach ($users as $allUsers)
+                                {
+                                    echo ('<form action="" class="user_table" method="get">
                                            <tr>
                                                <td style="text-align: center">' . $allUsers['id'] . '</td>
                                                <td style="padding-left: 0.2%">' . $allUsers['login'] . '</td>
@@ -205,28 +211,28 @@ $adminManager = new Admin();
                                                </td>
                                            </tr>
                                            </form>');
+                                }
+                                ?>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <?php
+                            if (isset($_GET['modifyUser']))
+                            {
+                                $adminManager -> displayUpdateusers($_GET['hiddenModifyUser']);
+                            }
+
+                            if (isset($_GET['deleteUser']))
+                            {
+                                $adminManager -> deleteUser($_GET['hiddenDeleteUser']);
                             }
                             ?>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <?php
-                        if (isset($_GET['modifyUser']))
-                        {
-                            $adminManager -> displayUpdateusers($_GET['hiddenModifyUser']);
-                        }
-
-                        if (isset($_GET['deleteUser']))
-                        {
-                            $adminManager -> deleteUser($_GET['hiddenDeleteUser']);
-                        }
-                        ?>
+                        </section>
                     </section>
                 </section>
             </section>
-        </section>
-    </article>
-</main>
+        </article>
+    </main>
 
 <?php $content = ob_get_clean(); ?>
 

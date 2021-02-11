@@ -20,7 +20,7 @@ $article->createarticle();
 
     <div class="main">
         <form action="creer-article.php" method="post">
-            <div class="card creer" style="width: 100%">
+            <div class="card creer">
                 <div class="card-body">
                     <label for="title"><h5>Titre de votre article</h5></label><br>
                     <input type="text" name="title" placeholder="titre" autofocus><br>

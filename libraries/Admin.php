@@ -142,6 +142,29 @@ class Admin extends Model
     }
 
     /**
+     * GESTION CATEGORIES -> Affiche un formulaire de création de catégories
+     */
+    public function displayCreateCategory()
+    {
+        echo ('<form action="" method="post" style="margin-top: 5%">
+                   <section class="container"><input type="text" id="create_Category" name="createCategory" placeholder="Nom de la catégorie..."></section>
+                   <section class="container"><input type="submit" class="btn btn-warning" id="valid_create_category" name="validCreateCategory" value="Valider"></section>
+               </form>');
+
+        if (isset($_POST['validCreateCategory']))
+        {
+            $category = htmlspecialchars(trim($_POST['createCategory']));
+
+            $query = $this -> pdo -> prepare("INSERT INTO categories(nom) VALUES(:nom)");
+            $query -> execute([
+                "nom" => $category
+            ]);
+
+            Http::redirect("../pages/admin.php");
+        }
+    }
+
+    /**
      * GESTION CATEGORIES -> Supprime une catégorie
      *
      * @param $id

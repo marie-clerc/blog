@@ -62,6 +62,7 @@ if (isset($_POST['logout'])){
                                    <p>' . substr($value[2],0,150) . '</p>
                                    <p> Posté le : ' . $value[5] . '</p>
                                    <i class="fas fa-arrow-right"></i> <a href="article.php?id=' . $_GET['id'] . '"> Lire l\'article en entier !</a><hr>';
+
                             }
                         }
                         else{
