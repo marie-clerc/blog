@@ -6,6 +6,7 @@
     place-items: center;
     background-color: #95999c;
     padding-top: 2rem;
+    width: 100%;
 }
 .card {
     width: 70%;
@@ -16,7 +17,7 @@
     display: grid;
     place-items: center;
 }
-.post {
+.post{
     width: 70%;
     display: grid;
     place-items: center;
@@ -25,5 +26,16 @@
 }
 .post form {
     display: grid;
+    width: 100%;
+}
+.creer {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    margin-bottom: 3rem;
+    justify-self: center;
+}
+.creer .card-body select {
+    margin-bottom: 1rem;
     width: 100%;
 }

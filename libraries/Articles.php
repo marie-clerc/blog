@@ -88,7 +88,6 @@ class Articles extends Model{
         $stm->execute(['idarticle'=>$id_article]);
         //var_dump($stm);
         return ($stm);
-
     }
 
     /**
